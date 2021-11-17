@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poi-deployment
+  namespace: trip
+  labels:
+    app: poi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: poipod
+  template:
+    metadata:
+      labels:
+        app: poipod
+    spec:
+      containers:
+      - name: poi
+        image: registryupn5885.azurecr.io/poi:1.0
+        ports:
+        - containerPort: 80
